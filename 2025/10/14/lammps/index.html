@@ -1,0 +1,656 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="BaiQiu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="编写in文件计算设置设置单位制设置单位制的语法为units &lt;style&gt; 123456#描述分子体系units real#描述金属units metal#描述简单液体units lj 设置模拟维度即你模拟的是三维还是二维，语法为dimension &lt;N&gt; 1234#二维dimension 2#三维dimension 3 设置边界条件即取对象的一部分，然后加上周期性边界条件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lammps">
+<meta property="og:url" content="http://example.com/2025/10/14/lammps/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="编写in文件计算设置设置单位制设置单位制的语法为units &lt;style&gt; 123456#描述分子体系units real#描述金属units metal#描述简单液体units lj 设置模拟维度即你模拟的是三维还是二维，语法为dimension &lt;N&gt; 1234#二维dimension 2#三维dimension 3 设置边界条件即取对象的一部分，然后加上周期性边界条件">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-14T14:21:58.000Z">
+<meta property="article:modified_time" content="2025-10-14T14:22:26.244Z">
+<meta property="article:author" content="BaiQiu">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>lammps - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>柏丘</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="lammps"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-14 22:21" pubdate>
+          2025年10月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">lammps</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="编写in文件"><a href="#编写in文件" class="headerlink" title="编写in文件"></a>编写in文件</h2><h3 id="计算设置"><a href="#计算设置" class="headerlink" title="计算设置"></a>计算设置</h3><h4 id="设置单位制"><a href="#设置单位制" class="headerlink" title="设置单位制"></a>设置单位制</h4><p>设置单位制的语法为<code>units &lt;style&gt;</code></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-comment">#描述分子体系</span><br>units <span class="hljs-built_in">real</span><br><span class="hljs-comment">#描述金属</span><br>units metal<br><span class="hljs-comment">#描述简单液体</span><br>units lj<br></code></pre></td></tr></table></figure>
+<h4 id="设置模拟维度"><a href="#设置模拟维度" class="headerlink" title="设置模拟维度"></a>设置模拟维度</h4><p>即你模拟的是三维还是二维，语法为<code>dimension &lt;N&gt;</code></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment">#二维</span><br><span class="hljs-attribute">dimension</span> <span class="hljs-number">2</span><br><span class="hljs-comment">#三维</span><br><span class="hljs-attribute">dimension</span> <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+<h4 id="设置边界条件"><a href="#设置边界条件" class="headerlink" title="设置边界条件"></a>设置边界条件</h4><p>即取对象的一部分，然后加上周期性边界条件来代替无限大的对象，这个区域通常被被称为模拟盒子，最常用的形状是长方形（编程比较容易处理）。设置边界条件在分子动力学模拟中优先级很高,所以第三条命令要写边界条件，语法为<code>boundary &lt;x&gt;&lt;y&gt;&lt;z&gt;</code></p>
+<h5 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h5><ol>
+<li>周期性边界条件：当豆子从屏幕右侧消失时，它会立刻从左侧重新出现；同样，从上边掉出屏幕的豆子会从下边冒出来。系统没有真正的”边缘”，任何一个方向都像闭合的环。</li>
+<li>固定边界条件：边界的墙是固定的，系统有明确的“终点”，固定边界 &#x3D; “不能越界”，就像被锁在房间里一样，所有的运动、碰撞都只能在规定范围内发生。</li>
+<li>缩放边界条件：盒子的边界会扩张或缩小，如分子动力学模拟中的恒压系统（NPT系综）：系统压力变化时，盒子体积会自动伸缩以维持目标压力。拉伸&#x2F;压缩材料模拟：模拟外力作用下的形变时，盒子的边界会按比例改变。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css">#写一个参数时，如 <span class="hljs-selector-tag">p</span> 就表示该方向上两个边界都是周期性<br>#周期性边界条件<span class="hljs-selector-tag">p</span><br>boundary <span class="hljs-selector-tag">p</span> <span class="hljs-selector-tag">p</span> <span class="hljs-selector-tag">p</span><br>#固定边界条件f<br>boundary f f f<br>#缩放边界条件s<br>boundary s s s<br>#写两个参数，表示在 <span class="hljs-attribute">x</span> 和 z 方向上是周期性边界,在 <span class="hljs-attribute">y</span> 方向下面是 f,上面是 s<br>boundary <span class="hljs-selector-tag">p</span> fs <span class="hljs-selector-tag">p</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="建立邻居列表"><a href="#建立邻居列表" class="headerlink" title="建立邻居列表"></a>建立邻居列表</h4><p>任何一个粒子都受到周围粒子的合力（截断半径r_c内），而在r_c外的粒子的力可以忽略不计。所以要找到对他有作用力的邻居，neighbor的语法是<code>neighbor &lt;skin&gt;&lt;style&gt;</code></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">neighbor</span> <span class="hljs-number">3</span> bin<br><span class="hljs-comment">#skin 可以理解为设立一个“缓冲区“。想象你是个教练，要看哪些学生离你够近，可以听你讲话。你定了个范围，比如“3米以内的人算近邻”。但学生可能在跑动，下一秒有人就从 3.1 米跑进来了。如果你每秒都重新数一遍，太累了。于是你干脆说：“我把范围多加一点，比如 3 米 + 0.5 米。”这多出来的 0.5 米，就是 skin</span><br><span class="hljs-comment">#style 指的是建立邻居列表的方法,最常用的就是 bin 方法。这个方法  的具体含义可以查看分子动力学教材。入门只需要知道 bin 在大多数情况下都是  最快的,用它就没错了</span><br></code></pre></td></tr></table></figure>
+<h4 id="设置邻居列表更新频率"><a href="#设置邻居列表更新频率" class="headerlink" title="设置邻居列表更新频率"></a>设置邻居列表更新频率</h4><p>即neigh_modify命令</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs smali">neigh_modify every 1 delay 0<span class="hljs-built_in"> check </span>yes<br><span class="hljs-comment">#当需要更新而未更新时就会出现  Dangerous builds。当算完之后 LAMMPS 输出的 Dangerous builds 不为零,那么你就要修改 neigh_modify 命令了,或者加大 skin 的值。这条命令使用比较复杂,需要根据模拟经验和具体的模拟测试确定最优值。对于新手,可以直接使用以上设置</span><br></code></pre></td></tr></table></figure>
+<h3 id="针对模拟对象设置"><a href="#针对模拟对象设置" class="headerlink" title="针对模拟对象设置"></a>针对模拟对象设置</h3><h4 id="设置原子类型"><a href="#设置原子类型" class="headerlink" title="设置原子类型"></a>设置原子类型</h4><p>不同的对象粒子所具有的属性是不同的。对于某个对象,粒子不需要的属性  就不需要设置,以节省内存加速计算。比如研究对象是分子(如水分子),那么  构成分子的粒子(style 为 full)就需要具有以下属性:粒子编号,粒子所属分子  的编号,粒子类别(atom type),带电量,x 坐标,y 坐标,z 坐标。如果研究对  象是惰性气体(如氩)或金属单质(如铁),那么粒子(style 为 atomic)的属性  就是:粒子编号,粒子类别,x 坐标,y 坐标,z 坐标。LAMMPS 中内置了相当  多的原子类型可以查看手册寻找自己需要的类型。这里要说的是 atom style 和  atom type 中文翻译都一样,具体是啥意思。简单来说 atom style 定义了大类,  atom type 定义了大类中的小类。比如一个水分子中,所有粒子的 atom_style 都是  full,但是在这个 style 下,又区分为氧原子 type 和氢原子 type。一个模拟中可以  由多个 type,但是只能有一个 style。atom_style 定义好后就约束了 data 文件中具  体内容。atom_style 的语法是<code>atom_style &lt;style&gt;</code></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment">#研究对象为分子</span><br><span class="hljs-attribute">atom_style</span> full<br><span class="hljs-comment">#研究对象为惰性气体或金属单质</span><br>atom_style atomic<br></code></pre></td></tr></table></figure>
+<h4 id="定义非键结相互作用"><a href="#定义非键结相互作用" class="headerlink" title="定义非键结相互作用"></a>定义非键结相互作用</h4><p>不同的力场有不同  的 pair_style,模拟中要根据对象选择合适的 pair_style。LAMMPS 集成了目前几  乎所有的 pair_style。模拟时只需要根据对象进行选择即可。pair_style 对于绝大多数模拟都需要定义。不同的 pair_style 具有不同的语法,具体可查阅手册。pair_style 中一般会定义截断半径的大小。以最简单的包含范德华的 pair_style 为例,其语法是<code>pair_style lj/cut &lt;cutoff&gt;</code></p>
+<h4 id="定义键结力"><a href="#定义键结力" class="headerlink" title="定义键结力"></a>定义键结力</h4><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-comment">#计算两个粒子通过化学键的作用，这条命令是可选的,根据不同的对象可定。</span><br>bond_style <span class="hljs-symbol">&lt;style&gt;</span><br><span class="hljs-comment">#计算相邻三个粒子的作用，这条命令是可选的,根据不同的对象可定。</span><br>angle_style <span class="hljs-symbol">&lt;style&gt;</span><br><span class="hljs-comment">#计算相邻四个粒子的作用，这条命令是可选的,根据不同的对象可定。</span><br>dihedral_style <span class="hljs-symbol">&lt;style&gt;</span><br><span class="hljs-comment">#计算相邻三个粒子的作用，这条命令是可选的,根据不同的对象可定。</span><br>improper_style <span class="hljs-symbol">&lt;style&gt;</span><br><span class="hljs-comment">#这条命令是可选的，当有键结作用出现时,  设定有键结相互作用的粒子之间是否还具有 pair 相互作用。一般来说,是没有的,所以这条命令一般写作:</span><br>special_bonds lj<span class="hljs-symbol">/coul</span> <span class="hljs-number">0.0</span> <span class="hljs-number">0.0</span> <span class="hljs-number">0.5</span><br><span class="hljs-comment">#当有静电作用出现时,  需要加上，这条命令是可选的</span><br>kspace_style <span class="hljs-symbol">&lt;style&gt;</span> <span class="hljs-symbol">&lt;value&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="定义对象的几何模型"><a href="#定义对象的几何模型" class="headerlink" title="定义对象的几何模型"></a>定义对象的几何模型</h3><h4 id="读取data文件"><a href="#读取data文件" class="headerlink" title="读取data文件"></a>读取data文件</h4><p><code>read_data</code></p>
+<h3 id="定义对象的物理模型"><a href="#定义对象的物理模型" class="headerlink" title="定义对象的物理模型"></a>定义对象的物理模型</h3><h4 id="pair-coeff命令"><a href="#pair-coeff命令" class="headerlink" title="pair_coeff命令"></a>pair_coeff命令</h4><p>根据定义的 pair_style 和粒子 type 的个数来决定  pair_coeff 的内容和条数。具体书写时可查看手册中对应的 pair_style 的例子。如  pair_style 是 lj&#x2F;cut,粒子 type 个数为 2,则该命令写为  </p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">pair_coeff</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>.<span class="hljs-number">1553</span> <span class="hljs-number">3</span>.<span class="hljs-number">166</span> <span class="hljs-number">9</span>.<span class="hljs-number">0</span>  <br><span class="hljs-attribute">pair_coeff</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">0</span>.<span class="hljs-number">1423</span> <span class="hljs-number">3</span>.<span class="hljs-number">125</span> <span class="hljs-number">9</span>.<span class="hljs-number">0</span>  <br><span class="hljs-attribute">pair_coeff</span> <span class="hljs-number">2</span> <span class="hljs-number">2</span> <span class="hljs-number">0</span>.<span class="hljs-number">2753</span> <span class="hljs-number">3</span>.<span class="hljs-number">196</span> <span class="hljs-number">9</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<h4 id="bond-coeff命令"><a href="#bond-coeff命令" class="headerlink" title="bond_coeff命令"></a>bond_coeff命令</h4><p>根据定义的 bond_style 和 bond type 的个数来决定 bond_coeff 的内容和条数。具体书写时可查看手册中对应的 bond_style 的例子。</p>
+<h4 id="angle-coeff命令"><a href="#angle-coeff命令" class="headerlink" title="angle_coeff命令"></a>angle_coeff命令</h4><p>根据定义的 angle_style 和 angle type 的个数来决  定 angle_coeff 的内容和条数。具体书写时可查看手册中对应的 angle_style 的例子</p>
+<h4 id="dihedral-coeff命令"><a href="#dihedral-coeff命令" class="headerlink" title="dihedral_coeff命令"></a>dihedral_coeff命令</h4><p>根据定义的 dihedral_style 和 dihedral type 的个数来决定 dihedral_coeff 的内容和条数。具体书写时可查看手册中对应的  dihedral_style 的例子</p>
+<h4 id="improper-coeff命令"><a href="#improper-coeff命令" class="headerlink" title="improper_coeff命令"></a>improper_coeff命令</h4><p>根据定义的 improper_style 和 improper type  的个数来决定 improper_coeff 的内容和条数。具体书写时可查看手册中对应的  improper_style 的例子</p>
+<h3 id="定义分组信息"><a href="#定义分组信息" class="headerlink" title="定义分组信息"></a>定义分组信息</h3><h4 id="group命令"><a href="#group命令" class="headerlink" title="group命令"></a>group命令</h4><h3 id="弛豫"><a href="#弛豫" class="headerlink" title="弛豫"></a>弛豫</h3><h4 id="thermo命令"><a href="#thermo命令" class="headerlink" title="thermo命令"></a>thermo命令</h4><p>控制多少步输出一次，若不设置则只会在第一步和最后一步输出。语法为<code>thermo &lt;N&gt;</code></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment">#10000步输出一次</span><br><span class="hljs-attribute">thermo</span> <span class="hljs-number">10000</span><br></code></pre></td></tr></table></figure>
+<h4 id="thermo-style命令"><a href="#thermo-style命令" class="headerlink" title="thermo_style命令"></a>thermo_style命令</h4><p>控制究竟要输出哪些全局量。  具体能够输出哪里量可查阅手册 thermo_style 命令描述。如果不设置该条命令,  那么 LAMMPS 就会输出默认信息。其语法是<code>thermo_style &lt;style&gt; &lt;args&gt;</code></p>
+<h4 id="minimize"><a href="#minimize" class="headerlink" title="minimize"></a>minimize</h4><p>这条命令是可选的。如果你的几何模型和物理模  型都设置正确,那么可以不用这条命令。这条命令执行的是能量最小化。所以如果你发现  你的体系中能量超级大,压强超级大而运行出错,那么你可以试试能量最小化命令，一般使用下面这些参数设置就能实现你的目的</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">minimize</span> <span class="hljs-number">0</span>.<span class="hljs-number">0</span> <span class="hljs-number">1</span>.<span class="hljs-number">0</span>e-<span class="hljs-number">8</span> <span class="hljs-number">1000</span> <span class="hljs-number">100000</span><br></code></pre></td></tr></table></figure>
+<h4 id="compute"><a href="#compute" class="headerlink" title="compute"></a>compute</h4><p>该命令是 LAMMPS 中极其重要的一类命令。当  你需要计算某个量时你就可以考虑使用 compute 命令。LAMMPS 提供了丰富的  compute 命令,具体使用时,根据你的需求,查阅手册看 LAMMPS 中有没有实  现你需要的功能的 compute。compute 和 dump 一样可以针对某个 group 的粒子进  行计算。一个 in 文件中可以有多个 compute,但每个 compute 的 id 不能重复。  计算出来的值可以被很多命令使用,如 dump,fix 等。最常用的就是计算温度,  如<code>compute myT all temp</code></p>
+<h4 id="velocity"><a href="#velocity" class="headerlink" title="velocity"></a>velocity</h4><p>velocity 命令有不少功能,最常用的功能就是根据  目标温度创建粒子的初始速度。最常用的形式为  <code>velocity all create 300.0 4928459 rot yes dist gaussian</code></p>
+<h4 id="timestep"><a href="#timestep" class="headerlink" title="timestep"></a>timestep</h4><p>该命令设定求解牛顿差分方程中∆t的大小。不同  体系会要求不同大小的∆t。时间步长的选取原则是,要足够小以准确捕捉体系中最  快的动力学过程,又要足够大以节省计算时间。通常你的时间步长大小参考文献设置就行了。或按照下面举的例子进行设置,就没啥问题了</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">#一般来说分子体系会要求∆t = <span class="hljs-number">1</span><span class="hljs-built_in">fs</span>。简单液体体系可  放宽至∆t = <span class="hljs-number">5</span><span class="hljs-built_in">fs</span>。晶体体系可以是∆t = <span class="hljs-number">2</span><span class="hljs-built_in">fs</span>。反应力场 reaxff 体系会要求更小的时  间步,∆t = <span class="hljs-number">0</span>.<span class="hljs-number">1</span> − <span class="hljs-number">0</span>.<span class="hljs-number">5</span><span class="hljs-built_in">fs</span>。<br></code></pre></td></tr></table></figure>
+<h4 id="fix"><a href="#fix" class="headerlink" title="fix"></a>fix</h4><p>fix 是 LAMMPS 中另一类极其重要的命令。其实现功  能就是对某个组的粒子施加某种操作。最重要的功能就是用来更新某个组的粒子  的速度和位置,因此每个 in 文件中都必然会有 fix 命令。我们通常所说的系综就  是通过 fix 命令实现。如 fix nve 实现 nve 系综,fix nvt 实现 nvt 系综,fix npt 实  现 npt 系综</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coq">把 <span class="hljs-built_in">fix</span> nve 或 <span class="hljs-built_in">fix</span> nvt 或 <span class="hljs-built_in">fix</span> npt 当做更新原子位置和速度的命令,  <span class="hljs-built_in">fix</span> nve 直接根据牛二进行更新,<span class="hljs-built_in">fix</span> nvt 在更新的时候会对速度进行干涉以达到设  定的温度,<span class="hljs-built_in">fix</span> npt 会对速度和位置同时进行干涉以达到设定的温度和压强。至于  nvt 和 nve 下体积变不变取决于你的边界条件<br></code></pre></td></tr></table></figure>
+<h4 id="run"><a href="#run" class="headerlink" title="run"></a>run</h4><p>这个命令最常用的就是你要 run 多  少步。在弛豫阶段一般会 run 1ns 的长度,通常是 1000000 步。这里可以控制采  用什么算法对牛二进行求解。采用默认的就行,也就是说你不用额外设置,直接  run 就行了。花里胡哨的没啥用,默认的往往是最好的。其设置是  <code>run 1000000</code></p>
+<h4 id="write-restart"><a href="#write-restart" class="headerlink" title="write_restart"></a>write_restart</h4><p>这个命令可以写出 restart 文件,以便后续从这个  点接着算。restart 文件是一个二进制文件。使用这条命令是个好的习惯,可以让  你省很多事,又不会额外增加计算量。其语法是  <code>write_restart &lt;filename&gt;</code> </p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-meta">#生成一个名为restart.equ的文件</span><br>write_restart restart<span class="hljs-meta">.equ</span><br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>lammps</div>
+      <div>http://example.com/2025/10/14/lammps/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>BaiQiu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/14/windows%E7%BD%91%E7%BB%9C%E9%A9%B1%E5%8A%A8%E5%99%A8%E6%97%A0%E6%B3%95%E6%98%A0%E5%B0%84/" title="windows网络驱动器无法映射">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">windows网络驱动器无法映射</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/14/other/" title="other">
+                        <span class="hidden-mobile">other</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

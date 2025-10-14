@@ -227,6 +227,204 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2025/10/14/%E5%85%B6%E4%BB%96%E8%AE%BE%E5%A4%87ssh%E8%BF%9E%E6%8E%A5windows/" target="_self">
+          其他设备ssh连接windows
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/10/14/%E5%85%B6%E4%BB%96%E8%AE%BE%E5%A4%87ssh%E8%BF%9E%E6%8E%A5windows/" target="_self">
+        <div>
+          解决可能是Windows与Mac换行符不同导致的ssh-copy-id命令使用无效的问题  生成密钥：ssh-keygen 在windows的user_name\.ssh新建一个名为authorized_keys的文件,将访问设备的公钥，即id_xxxxxx.pub文件内的内容复制其中 打开windows中ProgramData\ssh\ssh_config 将34、38、51行取消注释，将87、
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-10-14 22:24" pubdate>
+              2025-10-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/10/14/windows%E7%BD%91%E7%BB%9C%E9%A9%B1%E5%8A%A8%E5%99%A8%E6%97%A0%E6%B3%95%E6%98%A0%E5%B0%84/" target="_self">
+          windows网络驱动器无法映射
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/10/14/windows%E7%BD%91%E7%BB%9C%E9%A9%B1%E5%8A%A8%E5%99%A8%E6%97%A0%E6%B3%95%E6%98%A0%E5%B0%84/" target="_self">
+        <div>
+          改注册表  计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient\Parameters 下，把 BasicAuthLevel 的值改为 2 ( ‘1’ 默认只支持 HTTPS，’2’ 支持 HTTP 和 HTTPS) 重启服务12net stop webclient net start webclient 重新映射
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-10-14 22:23" pubdate>
+              2025-10-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/10/14/lammps/" target="_self">
+          lammps
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/10/14/lammps/" target="_self">
+        <div>
+          编写in文件计算设置设置单位制设置单位制的语法为units &lt;style&gt; 123456#描述分子体系units real#描述金属units metal#描述简单液体units lj 设置模拟维度即你模拟的是三维还是二维，语法为dimension &lt;N&gt; 1234#二维dimension 2#三维dimension 3 设置边界条件即取对象的一部分，然后加上周期性边界条件
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-10-14 22:21" pubdate>
+              2025-10-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/10/14/other/" target="_self">
+          other
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/10/14/other/" target="_self">
+        <div>
+          Windows IP 地址映射 打开C:\Windows\System32\drivers\etc\hosts 在最后添加your_IP_addr your_name 退出保存以后就可以用your_name代替your_IP_addr   重装系统后无法登录删除曾经的登录信息：ssh-keygen -R+IP配置免密登录生成公钥：ssh-keygen （MacOS）上传公钥：ssh-copy-id
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-10-14 22:20" pubdate>
+              2025-10-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/10/14/Systemd/" target="_self">
+          Systemd
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/10/14/Systemd/" target="_self">
+        <div>
+          Systemd 基本命令1234567systemctl daemon-reload #刷新systemdsystemctl status name #查看name服务状态systemctl start name #启动name服务systemd restart name #重启name服务systemctl stop name #停止name服务systemctl enable name #开机
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-10-14 22:20" pubdate>
+              2025-10-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/10/14/openlist/" target="_self">
+          openlist
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/10/14/openlist/" target="_self">
+        <div>
+          Openlist安装一键脚本安装文档点这里 步骤 ssh连接服务器：ssh user_name@user_addr,随后输入你的服务器密码 复制文档中的一键脚本并运行  注意： 安装目录为/opt/openlist 一键脚本安装较慢，可以先手动安装openlist，再来一键脚本管理  手动安装 Github官网下载openlist（对应你要安装的版本） scp命令将文件传到服务器上：scp fil
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-10-14 22:19" pubdate>
+              2025-10-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2025/10/14/Frp/" target="_self">
           Frp
         </a>
@@ -235,7 +433,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/10/14/Frp/" target="_self">
         <div>
-          Frp的应用 暴露内网服务 游戏联机  Frp的安装与配置Frp前提条件 具有公网ip的云服务器（无需高配） 一定的动手能力  Frp的下载​	Github：Frp-releases选择对应的系统版本下载 Frp的安装 将下载的文件解压，其中frpc为客户端，frps为服务端，toml后缀的为配置文件    编辑配置文件 ​&#x3D;&#x3D;服务端&#x3D;&#x3D;   12345
+          Frp的应用 暴露内网服务 游戏联机  Frp的安装与配置Frp前提条件 具有公网ip的云服务器（无需高配） 一定的动手能力  Frp的下载​	Github：Frp-releases选择对应的系统版本下载 Frp的安装 将下载的文件解压，其中frpc为客户端，frps为服务端，toml后缀的为配置文件    编辑配置文件 ​&#x3D;&#x3D;服务端&#x3D;&#x3D;   1234567
         </div>
       </a>
 
