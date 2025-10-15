@@ -19,21 +19,27 @@
   <meta name="author" content="BaiQiu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="解决可能是Windows与Mac换行符不同导致的ssh-copy-id命令使用无效的问题  生成密钥：ssh-keygen 在windows的user_name\.ssh新建一个名为authorized_keys的文件,将访问设备的公钥，即id_xxxxxx.pub文件内的内容复制其中 打开windows中ProgramData\ssh\ssh_config 将34、38、51行取消注释，将87、">
+    <meta name="description" content="Openwrt的远程管理目的​	实现外网状态下访问Openwrt网页管理 前提​	如上在云服务器安装并设置完成Frp Frp与Openwrt的配置Frp配置如上 Openwrt配置 下载并安装luci-app-frpc  打开Openwrt网页面板–服务–Frp内网穿透  服务器填写你的云服务器IP  端口填写你的服务端配置文件的端口  令牌为你的服务器端配置的token  其他保持不变">
 <meta property="og:type" content="article">
-<meta property="og:title" content="其他设备ssh连接windows">
-<meta property="og:url" content="http://example.com/2025/10/14/%E5%85%B6%E4%BB%96%E8%AE%BE%E5%A4%87ssh%E8%BF%9E%E6%8E%A5windows/index.html">
+<meta property="og:title" content="Frp的应用">
+<meta property="og:url" content="http://example.com/2025/10/15/Openwrt%E7%9A%84%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="解决可能是Windows与Mac换行符不同导致的ssh-copy-id命令使用无效的问题  生成密钥：ssh-keygen 在windows的user_name\.ssh新建一个名为authorized_keys的文件,将访问设备的公钥，即id_xxxxxx.pub文件内的内容复制其中 打开windows中ProgramData\ssh\ssh_config 将34、38、51行取消注释，将87、">
+<meta property="og:description" content="Openwrt的远程管理目的​	实现外网状态下访问Openwrt网页管理 前提​	如上在云服务器安装并设置完成Frp Frp与Openwrt的配置Frp配置如上 Openwrt配置 下载并安装luci-app-frpc  打开Openwrt网页面板–服务–Frp内网穿透  服务器填写你的云服务器IP  端口填写你的服务端配置文件的端口  令牌为你的服务器端配置的token  其他保持不变">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-10-14T14:24:16.000Z">
-<meta property="article:modified_time" content="2025-10-14T14:24:29.007Z">
+<meta property="og:image" content="https://blogofi.oss-cn-beijing.aliyuncs.com/img/2.png">
+<meta property="og:image" content="https://blogofi.oss-cn-beijing.aliyuncs.com/img/3.png">
+<meta property="og:image" content="https://blogofi.oss-cn-beijing.aliyuncs.com/img/4.png">
+<meta property="og:image" content="https://blogofi.oss-cn-beijing.aliyuncs.com/img/5.png">
+<meta property="article:published_time" content="2025-10-15T02:48:03.000Z">
+<meta property="article:modified_time" content="2025-10-15T02:50:36.815Z">
 <meta property="article:author" content="BaiQiu">
+<meta property="article:tag" content="Openwrt Frp Moonlight">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blogofi.oss-cn-beijing.aliyuncs.com/img/2.png">
   
   
   
-  <title>其他设备ssh连接windows - Hexo</title>
+  <title>Frp的应用 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="其他设备ssh连接windows"></span>
+            <span id="subtitle" data-typed-text="Frp的应用"></span>
           
         </div>
 
@@ -210,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-14 22:24" pubdate>
-          2025年10月14日 晚上
+        <time datetime="2025-10-15 10:48" pubdate>
+          2025年10月15日 上午
         </time>
       </span>
     
@@ -222,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          92 字
+          248 字
         
       </span>
     
@@ -233,7 +239,7 @@
         
         
         
-          1 分钟
+          3 分钟
         
       </span>
     
@@ -270,19 +276,53 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">其他设备ssh连接windows</h1>
+            <h1 id="seo-header">Frp的应用</h1>
             
             
               <div class="markdown-body">
                 
-                <p>解决可能是Windows与Mac换行符不同导致的<code>ssh-copy-id</code>命令使用无效的问题</p>
-<ol>
-<li>生成密钥：<code>ssh-keygen</code></li>
-<li>在windows的<code>user_name\.ssh</code>新建一个名为<code>authorized_keys</code>的文件,将访问设备的公钥，即<code>id_xxxxxx.pub</code>文件内的内容复制其中</li>
-<li>打开windows中<code>ProgramData\ssh\ssh_config</code></li>
-<li>将34、38、51行取消注释，将87、88（最后两行）注释</li>
-<li>重启<code>OpenSSH SSH Server</code>服务</li>
+                <h3 id="Openwrt的远程管理"><a href="#Openwrt的远程管理" class="headerlink" title="Openwrt的远程管理"></a>Openwrt的远程管理</h3><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>​	实现外网状态下访问Openwrt网页管理</p>
+<h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p>​	如上在云服务器安装并设置完成Frp</p>
+<h4 id="Frp与Openwrt的配置"><a href="#Frp与Openwrt的配置" class="headerlink" title="Frp与Openwrt的配置"></a>Frp与Openwrt的配置</h4><h5 id="Frp配置"><a href="#Frp配置" class="headerlink" title="Frp配置"></a>Frp配置</h5><p>如上</p>
+<h5 id="Openwrt配置"><a href="#Openwrt配置" class="headerlink" title="Openwrt配置"></a>Openwrt配置</h5><ol>
+<li><p>下载并安装luci-app-frpc</p>
+</li>
+<li><p>打开Openwrt网页面板–服务–Frp内网穿透</p>
+</li>
+<li><p>服务器填写你的云服务器IP</p>
+</li>
+<li><p>端口填写你的服务端配置文件的端口</p>
+</li>
+<li><p>令牌为你的服务器端配置的token</p>
+</li>
+<li><p>其他保持不变</p>
+</li>
 </ol>
+<p><img src="https://blogofi.oss-cn-beijing.aliyuncs.com/img/2.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li>Ftp协议选择TCP</li>
+<li>远程端口为你想要使用的端口</li>
+<li>内网地址为Openwrt的地址</li>
+<li>内网端口为80</li>
+<li>其余不变</li>
+</ol>
+<p><img src="https://blogofi.oss-cn-beijing.aliyuncs.com/img/3.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="远程访问你的Openwrt"><a href="#远程访问你的Openwrt" class="headerlink" title="远程访问你的Openwrt"></a>远程访问你的Openwrt</h4><p>浏览器输入your_IP:remote_port            如12.234.32.556:7800</p>
+<hr>
+<h3 id="Moonlight远程控制"><a href="#Moonlight远程控制" class="headerlink" title="Moonlight远程控制"></a>Moonlight远程控制</h3><h4 id="前提准备"><a href="#前提准备" class="headerlink" title="前提准备"></a>前提准备</h4><ol>
+<li>如上配置完成Frp服务端</li>
+<li>本地配置好moonliht的使用</li>
+</ol>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>根据<a href="#Frp%E7%9A%84%E5%AE%89%E8%A3%85">上述规则</a>填写好配置文件</p>
+<p>服务器端同上</p>
+<p>客户端添加</p>
+<p>​	TCP：47984、47989、48010</p>
+<p>​	UDP：5353、47998、47999、48000、48002、48010</p>
+<h4 id="远程使用Moonlight"><a href="#远程使用Moonlight" class="headerlink" title="远程使用Moonlight"></a>远程使用Moonlight</h4><p>如图点击加号</p>
+<p><img src="https://blogofi.oss-cn-beijing.aliyuncs.com/img/4.png" srcset="/img/loading.gif" lazyload></p>
+<p>输入你的云服务器的地址</p>
+<p><img src="https://blogofi.oss-cn-beijing.aliyuncs.com/img/5.png" srcset="/img/loading.gif" lazyload></p>
+<p>enjoy it！</p>
 
                 
               </div>
@@ -292,6 +332,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Openwrt-Frp-Moonlight/" class="print-no-link">#Openwrt Frp Moonlight</a>
+      
+    </div>
+  
 </div>
 
 
@@ -300,8 +347,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>其他设备ssh连接windows</div>
-      <div>http://example.com/2025/10/14/其他设备ssh连接windows/</div>
+      <div>Frp的应用</div>
+      <div>http://example.com/2025/10/15/Openwrt的远程管理/</div>
     </div>
     <div class="license-meta">
       
@@ -313,7 +360,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月14日</div>
+          <div>2025年10月15日</div>
         </div>
       
       
@@ -345,18 +392,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/15/Openwrt%E7%9A%84%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/" title="Frp的应用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Frp的应用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/14/windows%E7%BD%91%E7%BB%9C%E9%A9%B1%E5%8A%A8%E5%99%A8%E6%97%A0%E6%B3%95%E6%98%A0%E5%B0%84/" title="windows网络驱动器无法映射">
-                        <span class="hidden-mobile">windows网络驱动器无法映射</span>
+                      <a href="/2025/10/14/%E5%85%B6%E4%BB%96%E8%AE%BE%E5%A4%87ssh%E8%BF%9E%E6%8E%A5windows/" title="其他设备ssh连接windows">
+                        <span class="hidden-mobile">其他设备ssh连接windows</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
