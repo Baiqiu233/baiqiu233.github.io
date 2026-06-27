@@ -1,0 +1,5 @@
+<ol>
+<li>改注册表  <code>计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient\Parameters</code> 下，把 <code>BasicAuthLevel</code> 的值改为 <code>2</code> ( ‘1’ 默认只支持 HTTPS，’2’ 支持 HTTP 和 HTTPS)</li>
+<li>重启服务<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dos"><span class="hljs-built_in">net</span> stop webclient <br><span class="hljs-built_in">net</span> <span class="hljs-built_in">start</span> webclient<br></code></pre></td></tr></table></figure></li>
+<li>重新映射</li>
+</ol>

@@ -1,0 +1,8 @@
+<p>解决可能是Windows与Mac换行符不同导致的<code>ssh-copy-id</code>命令使用无效的问题</p>
+<ol>
+<li>生成密钥：<code>ssh-keygen</code></li>
+<li>在windows的<code>user_name\.ssh</code>新建一个名为<code>authorized_keys</code>的文件,将访问设备的公钥，即<code>id_xxxxxx.pub</code>文件内的内容复制其中</li>
+<li>打开windows中<code>ProgramData\ssh\ssh_config</code></li>
+<li>将34、38、51行取消注释，将87、88（最后两行）注释</li>
+<li>重启<code>OpenSSH SSH Server</code>服务</li>
+</ol>

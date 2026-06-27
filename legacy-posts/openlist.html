@@ -1,0 +1,17 @@
+<h2 id="Openlist"><a href="#Openlist" class="headerlink" title="Openlist"></a>Openlist</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="一键脚本安装"><a href="#一键脚本安装" class="headerlink" title="一键脚本安装"></a>一键脚本安装</h4><p><a target="_blank" rel="noopener" href="https://doc.oplist.org/guide/installation/script">文档点这里</a></p>
+<h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><ol>
+<li>ssh连接服务器：<code>ssh user_name@user_addr</code>,随后输入你的服务器密码</li>
+<li>复制文档中的一键脚本并运行<br><img src="https://blogofi.oss-cn-beijing.aliyuncs.com/img/6.png" srcset="/img/loading.gif" lazyload></li>
+</ol>
+<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><ol>
+<li>安装目录为<code>/opt/openlist</code></li>
+<li>一键脚本安装较慢，可以先手动安装openlist，再来一键脚本管理</li>
+</ol>
+<h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><ol>
+<li>Github官网下载<a target="_blank" rel="noopener" href="https://github.com/OpenListTeam/OpenList/releases">openlist</a>（对应你要安装的版本）</li>
+<li>scp命令将文件传到服务器上：<code>scp file_addr user_name@remote_addr:/root #将文件上传到服务器的root目录</code></li>
+<li>依次执行下列命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -zxvf openlist-xxxx.tar.gz <span class="hljs-comment">#将文件解压</span><br><span class="hljs-built_in">chmod</span> +x openlist <span class="hljs-comment">#给文件执行权限       </span><br>./openlist server <span class="hljs-comment">#启动服务</span><br>./openlist admin <span class="hljs-comment">#创建名为admin的账户</span><br>./openlist admin random <span class="hljs-comment">#为账户admin赋予随机密码</span><br>./openlist admin <span class="hljs-built_in">set</span> NEW_PASSWORD <span class="hljs-comment">#设定admin账户的新密码</span><br></code></pre></td></tr></table></figure></li>
+<li>浏览器访问your_IP:5244即可</li>
+</ol>
+<h4 id="Openlist的开机自启动"><a href="#Openlist的开机自启动" class="headerlink" title="Openlist的开机自启动"></a>Openlist的开机自启动</h4><p>编辑 &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;openlist.service 并添加如下内容，其中 path_openlist 为 OpenList 所在的路径</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=openlist<br><span class="hljs-attr">After</span>=network.target<br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">Type</span>=simple<br><span class="hljs-attr">WorkingDirectory</span>=path_openlist<br><span class="hljs-attr">ExecStart</span>=path_openlist/openlist server<br><span class="hljs-attr">Restart</span>=<span class="hljs-literal">on</span>-failure<br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=multi-user.target<br></code></pre></td></tr></table></figure>

@@ -1,0 +1,42 @@
+<h3 id="Openwrt的远程管理"><a href="#Openwrt的远程管理" class="headerlink" title="Openwrt的远程管理"></a>Openwrt的远程管理</h3><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>​	实现外网状态下访问Openwrt网页管理</p>
+<h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p>​	如上在云服务器安装并设置完成Frp</p>
+<h4 id="Frp与Openwrt的配置"><a href="#Frp与Openwrt的配置" class="headerlink" title="Frp与Openwrt的配置"></a>Frp与Openwrt的配置</h4><h5 id="Frp配置"><a href="#Frp配置" class="headerlink" title="Frp配置"></a>Frp配置</h5><p>如上</p>
+<h5 id="Openwrt配置"><a href="#Openwrt配置" class="headerlink" title="Openwrt配置"></a>Openwrt配置</h5><ol>
+<li><p>下载并安装luci-app-frpc</p>
+</li>
+<li><p>打开Openwrt网页面板–服务–Frp内网穿透</p>
+</li>
+<li><p>服务器填写你的云服务器IP</p>
+</li>
+<li><p>端口填写你的服务端配置文件的端口</p>
+</li>
+<li><p>令牌为你的服务器端配置的token</p>
+</li>
+<li><p>其他保持不变</p>
+</li>
+</ol>
+<p><img src="https://blogofi.oss-cn-beijing.aliyuncs.com/img/2.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li>Ftp协议选择TCP</li>
+<li>远程端口为你想要使用的端口</li>
+<li>内网地址为Openwrt的地址</li>
+<li>内网端口为80</li>
+<li>其余不变</li>
+</ol>
+<p><img src="https://blogofi.oss-cn-beijing.aliyuncs.com/img/3.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="远程访问你的Openwrt"><a href="#远程访问你的Openwrt" class="headerlink" title="远程访问你的Openwrt"></a>远程访问你的Openwrt</h4><p>浏览器输入your_IP:remote_port            如12.234.32.556:7800</p>
+<hr>
+<h3 id="Moonlight远程控制"><a href="#Moonlight远程控制" class="headerlink" title="Moonlight远程控制"></a>Moonlight远程控制</h3><h4 id="前提准备"><a href="#前提准备" class="headerlink" title="前提准备"></a>前提准备</h4><ol>
+<li>如上配置完成Frp服务端</li>
+<li>本地配置好moonliht的使用</li>
+</ol>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>根据<a href="#Frp%E7%9A%84%E5%AE%89%E8%A3%85">上述规则</a>填写好配置文件</p>
+<p>服务器端同上</p>
+<p>客户端添加</p>
+<p>​	TCP：47984、47989、48010</p>
+<p>​	UDP：5353、47998、47999、48000、48002、48010</p>
+<h4 id="远程使用Moonlight"><a href="#远程使用Moonlight" class="headerlink" title="远程使用Moonlight"></a>远程使用Moonlight</h4><p>如图点击加号</p>
+<p><img src="https://blogofi.oss-cn-beijing.aliyuncs.com/img/4.png" srcset="/img/loading.gif" lazyload></p>
+<p>输入你的云服务器的地址</p>
+<p><img src="https://blogofi.oss-cn-beijing.aliyuncs.com/img/5.png" srcset="/img/loading.gif" lazyload></p>
+<p>enjoy it！</p>
