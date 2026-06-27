@@ -1,12 +1,12 @@
-# 柏丘 React/Vite 新版博客
+# 柏丘 React/Vite 博客
 
-这个目录是新版博客源码，目标是迁移成 `React + Vite + animal-island-ui` 风格的博客。
+这个目录是新版博客源码，使用 `React + Vite + animal-island-ui`。
 
 ## 文件边界
 
-- 旧版静态博客仍然保留在仓库根目录，例如 `index.html`、`2025/`、`2026/`、`archives/`。
 - 新版源码只放在 `animal-island-react/`。
-- 迁移完成前，不移动、不删除、不覆盖旧版文章文件。
+- 旧版静态博客归档在仓库根目录的 `legacy-static-blog/`。
+- 仓库根目录的 `CNAME` 是 GitHub Pages 自定义域名配置，不属于旧版或新版源码。
 
 ## 目录结构
 
@@ -18,12 +18,14 @@ animal-island-react/
   src/
     main.tsx                # React 入口
     App.tsx                 # 路由入口
-    data/posts.ts           # 迁移后的文章数据
+    data/posts.ts           # 首页文章列表和文章元数据
     pages/Home/             # 首页
     pages/Post/             # 文章详情页
+  public/
+    legacy-posts/           # 当前文章正文 HTML
 ```
 
-## 下一步
+## 本地运行
 
 需要安装项目依赖后才能运行：
 
@@ -32,4 +34,11 @@ pnpm install
 pnpm dev
 ```
 
-我会在安装依赖前单独向你确认。
+## 新增文章
+
+当前版本新增文章需要同步修改：
+
+- `public/legacy-posts/<文章 id>.html`
+- `src/data/posts.ts`
+
+其中 `posts.ts` 里的 `id` 必须和正文 HTML 文件名一致。
