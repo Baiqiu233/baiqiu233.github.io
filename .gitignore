@@ -1,0 +1,8 @@
+.DS_Store
+.pnpm-store/
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts

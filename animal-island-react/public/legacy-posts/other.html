@@ -1,0 +1,8 @@
+<h3 id="Windows-IP-地址映射"><a href="#Windows-IP-地址映射" class="headerlink" title="Windows IP 地址映射"></a>Windows IP 地址映射</h3><ol>
+<li>打开<code>C:\Windows\System32\drivers\etc\hosts</code></li>
+<li>在最后添加<code>your_IP_addr your_name</code></li>
+<li>退出保存<br>以后就可以用your_name代替your_IP_addr</li>
+</ol>
+<hr>
+<h3 id="重装系统后无法登录"><a href="#重装系统后无法登录" class="headerlink" title="重装系统后无法登录"></a>重装系统后无法登录</h3><h2 id="删除曾经的登录信息：ssh-keygen-R-IP"><a href="#删除曾经的登录信息：ssh-keygen-R-IP" class="headerlink" title="删除曾经的登录信息：ssh-keygen -R+IP"></a>删除曾经的登录信息：<code>ssh-keygen -R+IP</code></h2><h3 id="配置免密登录"><a href="#配置免密登录" class="headerlink" title="配置免密登录"></a>配置免密登录</h3><p>生成公钥：<code>ssh-keygen</code></p>
+<h2 id="（MacOS）上传公钥：ssh-copy-id-i-file-addr-username-IP（windows）上传公玥1-ssh连接服务器2-编辑-ssh中的authorized-keys3-将你的公玥追加到字符后面"><a href="#（MacOS）上传公钥：ssh-copy-id-i-file-addr-username-IP（windows）上传公玥1-ssh连接服务器2-编辑-ssh中的authorized-keys3-将你的公玥追加到字符后面" class="headerlink" title="（MacOS）上传公钥：ssh-copy-id -i file_addr username@IP（windows）上传公玥1. ssh连接服务器2. 编辑.ssh中的authorized_keys3. 将你的公玥追加到字符后面"></a>（MacOS）上传公钥：<code>ssh-copy-id -i file_addr username@IP</code><br>（windows）上传公玥<br>1. ssh连接服务器<br>2. 编辑.ssh中的authorized_keys<br>3. 将你的公玥追加到字符后面</h2>
